@@ -2,7 +2,7 @@ export const SITE_FAVICON = "/favicon.png";
 export const SITE_LOGO = "/avatar.png";
 export const SITE_TITLE = "Daily Notes";
 export const SITE_DESCRIPTION =
-  "Mia is designed to be minimalist yet powerful, integrating the capabilities of Astro, MDX, and Rough Notation. Whether you're a developer, writer, or just someone who loves clean and efficient design, this theme is perfect for you.";
+  "A blog about software development, programming, and life.";
 
 export const MENUS = [
   {

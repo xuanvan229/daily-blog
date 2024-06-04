@@ -1,0 +1,24 @@
+---
+title: "Vài dòng về Excel Addin"
+description: "Dạo gần đây mình có cơ hội làm việc với Excel Addin, một mảng hoàn toàn mới và mình chưa bao giờ làm trước đó bao giờ. Nên mình muốn viết ra một số điều mình đã học được để sau này có thể xem lại."
+date: "2024-06-04"
+tags: ["excel", "react"]
+cover: "https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+---
+
+
+## Tại sao lại cần Excel Addin?
+
+Vì dự án cần một tính năng để xây dựng Pivot Report. Nhưng mà tính năng đó xử dụng trên web quá nặng và lag. Dẫn đến việc chúng tôi quyết định chuyển sang Excel Addin. Để pull toàn bộ data về và user có thể tự xây dựng Pivot Report mà không cần phải chờ đợi.
+
+## Những lưu ý khi làm việc với Excel Addin
+
+- Không tải bản excel từ apple store mà tải bản cài từ trang chủ của Microsoft.
+- Để debug được thì cần phải chạy lệnh sau 
+
+```
+defaults write com.microsoft.Excel OfficeWebAddinDeveloperExtras -bool true
+```
+
+- Vì excel Addin build ra web nên khi code cần cẩn thận các feature có thể không được support ở các browser cũ.
+- Excel Addin chỉ call được api từ https nên cần phải chuyển hết các api về https (có thể dùng ngrok để dev)

@@ -1,0 +1,77 @@
+---
+title: "Học Threejs (day 1)"
+description: "Note linh tinh khi học Threejs"
+date: "2024-06-07"
+tags: ["threejs"]
+cover: "/assets/2024/06/07/threejs.jpg"
+---
+
+
+## The Scene 
+
+Scene có thể hiểu là không gian 3D mà chúng ta muốn hiển thị. Scene chứa tất cả các đối tượng, ánh sáng và camera. 
+
+Tạo một scene trong Three.js:
+```js
+var scene = new THREE.Scene();
+```
+
+
+## The camera
+
+Camera trong Three.js giống như camera trong thế giới thực. Nó xác định góc nhìn của chúng ta. Khi định nghĩa thì chúng ta cần truyền vào 4 tham số:
+
+- Field of view: Góc nhìn của camera. Đơn vị là độ. Là góc nhìn dọc của camera. 
+- Aspect ratio: Tỉ lệ chiều rộng và chiều cao của camera
+- Near: Khoảng cách gần nhất mà camera có thể nhìn thấy
+- Far: Khoảng cách xa nhất mà camera có thể nhìn thấy
+
+
+```js
+// add a camera
+// THREE.PerspectiveCamera(fov, aspect, near, far)
+var camera = new THREE.PerspectiveCamera(
+  75, 
+  window.innerWidth/window.innerHeight, 
+  0.1, 
+  1000
+);
+
+// place the camera at z of 100
+camera.position.z = 100;
+
+// add a renderer
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+// add the renderer element to the DOM so it is in our page
+document.body.appendChild( renderer.domElement );
+```
+
+## Lighting 
+
+Lighting trong Three.js giống như ánh sáng trong thế giới thực. Nó giúp chúng ta nhìn rõ các đối tượng trong scene.
+
+Có các loại ánh sáng sau:
+
+  - AmbientLight: Ánh sáng môi trường
+  - DirectionalLight: Ánh sáng chiếu từ một hướng cố định
+  - PointLight: Ánh sáng chiếu từ một điểm cố định
+  - SpotLight: Ánh sáng chiếu từ một hướng cố định và có hướng chiếu
+  - HemisphereLight: Ánh sáng chiếu từ trên xuống
+
+```js
+/* we're creating a cube to put in our scene - don't worry
+if you don't follow this part, we'll cover geometry and materials
+in future posts */
+var geometry = new THREE.BoxGeometry(20, 20, 20);
+var material = new THREE.MeshLambertMaterial({color: 0xfd59d7});
+var cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+/* we need to add a light so we can see our cube - its almost
+as if we're turning on a lightbulb within the room */
+var light = new THREE.PointLight(0xFFFF00);
+/* position the light so it shines on the cube (x, y, z) */
+light.position.set(10, 0, 25);
+scene.add(light);
+```
